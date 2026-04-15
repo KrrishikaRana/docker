@@ -1,16 +1,16 @@
-version: "3.9"
-
 services:
   backend:
-    build: ./backend
+    image: krrishika/auth-backend
     ports:
       - "5000:5000"
     env_file:
       - ./backend/.env
+    restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    image: krrishika/auth-frontend
     ports:
-      - "8080:80"
+      - "8081:8080"   # Changed host port from 8080 to 8081
     depends_on:
       - backend
+    restart: unless-stopped
